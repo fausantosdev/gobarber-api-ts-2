@@ -1,0 +1,33 @@
+{
+  "name": "gobarber-api-ts-2",
+  "version": "1.0.0",
+  "description": "GoBarber api",
+  "main": "./src/server",
+  "repository": "https://github.com/fausantosdev/gobarber-api-ts-2.git",
+  "author": "fallsantos <fallsantosdev@hotmail.com>",
+  "license": "MIT",
+  "scripts": {
+    "build": "tsc",
+    "dev:server": "ts-node-dev --inspect --transpile-only --ignore-watch node_modules src/server",
+    "typeorm": "ts-node-dev ./node_modules/typeorm/cli.js"
+  },
+  "dependencies": {
+    "@typescript-eslint/eslint-plugin": "^5.10.1",
+    "@typescript-eslint/parser": "^5.10.1",
+    "eslint-config-airbnb-base": "^15.0.0",
+    "eslint-plugin-import": "2.25.2",
+    "express": "^4.17.2",
+    "pg": "^8.7.3",
+    "typeorm": "^0.2.41"
+  },
+  "devDependencies": {
+    "@types/express": "^4.17.13",
+    "eslint": "^8.8.0",
+    "eslint-config-prettier": "^8.3.0",
+    "eslint-import-resolver-typescript": "^2.5.0",
+    "eslint-plugin-prettier": "^4.0.0",
+    "prettier": "^2.5.1",
+    "ts-node-dev": "^1.1.8",
+    "typescript": "^4.5.5"
+  }
+}
