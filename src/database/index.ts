@@ -1,7 +1,7 @@
 import { response } from 'express'
 import {createConnection} from 'typeorm'
 
-createConnection()
+createConnection()// Connect
   .then(response => {
     console.log('~ database connected')
   })
