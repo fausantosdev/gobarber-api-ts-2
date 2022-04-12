@@ -29,6 +29,8 @@ router.post('/', async (request, response) => {
       name, email, password
     })
 
+    //delete user.password
+
     return response.json(user)
 
   } catch (err: any) {
