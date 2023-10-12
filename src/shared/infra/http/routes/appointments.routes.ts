@@ -5,7 +5,7 @@ import { getCustomRepository } from 'typeorm'
 import AppointmentRepository from '../../modules/appointments/repositories/AppointmentsRepository'
 import CreateAppointmentService from '../../modules/appointments/services/CreateAppointmentService'
 
-import insureAuthenticated from '../../shared/middlewares/ensureAuthenticated'
+import insureAuthenticated from '../infra/middlewares/ensureAuthenticated'
 
 const router = Router()
 

@@ -2,7 +2,7 @@ import { Router, Request, Response } from 'express'
 import { getRepository } from 'typeorm'
 import multer from 'multer'
 
-import ensureAuthenticated from '../middlewares/ensureAuthenticated'
+import ensureAuthenticated from '../infra/middlewares/ensureAuthenticated'
 
 import uploadConfig from '../../config/upload'
 const upload = multer(uploadConfig)
