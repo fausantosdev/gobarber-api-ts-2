@@ -1,4 +1,3 @@
-import { response } from 'express'
 import {createConnection} from 'typeorm'
 
 createConnection()// Connect
