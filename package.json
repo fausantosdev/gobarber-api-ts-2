@@ -8,9 +8,9 @@
   "license": "MIT",
   "scripts": {
     "build": "tsc",
-    "start": "ts-node src/server",
-    "dev:server": "ts-node-dev --inspect --transpile-only --ignore-watch node_modules src/server",
-    "typeorm": "ts-node-dev ./node_modules/typeorm/cli.js"
+    "start": "ts-node src/shared/infra/http/server",
+    "dev:server": "ts-node-dev -r tsconfig-paths/register --inspect --transpile-only --ignore-watch node_modules src/shared/infra/http/server",
+    "typeorm": "ts-node-dev -r tsconfig-paths/register ./node_modules/typeorm/cli.js"
   },
   "dependencies": {
     "@typescript-eslint/eslint-plugin": "^5.10.1",
@@ -41,6 +41,7 @@
     "eslint-plugin-prettier": "^4.0.0",
     "prettier": "^2.5.1",
     "ts-node-dev": "^1.1.8",
+    "tsconfig-paths": "^4.2.0",
     "typescript": "^4.5.5"
   }
 }

@@ -2,9 +2,9 @@ import { Router } from 'express';
 
 const routes = Router();
 
-import sessionRoutes from './sessions.routes'
-import appointmentRoutes from './appointments.routes'
-import userRoutes from './users.routes'
+import sessionRoutes from '@modules/users/infra/http/routes/sessions.routes'
+import userRoutes from '@modules/users/infra/http/routes/users.routes'
+import appointmentRoutes from '@modules/appointments/infra/http/routes/appointments.routes'
 
 routes.use('/auth', sessionRoutes)
 routes.use('/users', userRoutes)
