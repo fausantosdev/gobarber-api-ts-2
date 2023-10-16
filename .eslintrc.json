@@ -31,7 +31,15 @@
     ],
     "@typescript-eslint/no-unused-vars": "off",
     "import/prefer-default-export": "off",
-    "class-methods-use-this": "off"
+    "class-methods-use-this": "off",
+    "@typescript-eslint/naming-convention": [
+      "error",
+      {
+        "selector": "interface",
+        "format": ["PascalCase"],
+        "prefix": ["I"]
+      }
+    ]
   },
   "settings": {
     "import/resolver": {
