@@ -10,7 +10,8 @@
     "build": "tsc",
     "start": "ts-node src/shared/infra/http/server",
     "dev:server": "ts-node-dev -r tsconfig-paths/register --inspect --transpile-only --ignore-watch node_modules src/shared/infra/http/server",
-    "typeorm": "ts-node-dev -r tsconfig-paths/register ./node_modules/typeorm/cli.js"
+    "typeorm": "ts-node-dev -r tsconfig-paths/register ./node_modules/typeorm/cli.js",
+    "fix": "eslint --fix ./src --ext .ts"
   },
   "dependencies": {
     "@typescript-eslint/eslint-plugin": "^5.10.1",
