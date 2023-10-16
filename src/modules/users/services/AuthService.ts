@@ -20,36 +20,39 @@ interface Response {
 
 // Regras de negócio
 class AuthService {
-  public async execute({email, password}: Request): Promise<Response>{
+  public async execute({ email, password }: Request): Promise<Response> {
     const usersRepository = getRepository(User)
 
-    const user = await usersRepository.findOne({where: {email}})
+    const user = await usersRepository.findOne({ where: { email } })
 
-    //console.log(user)
+    // console.log(user)
 
-    if(!user){
-      throw new AppError('Authentication failed: incorrect credentials.[1]', 200)
+    if (!user) {
+      throw new AppError(
+        'Authentication failed: incorrect credentials.[1]',
+        200
+      )
     }
 
     const passwordMatched = await compare(password, user.password)
 
-    if(!passwordMatched){
-      throw new AppError('Authentication failed: incorrect credentials.[2]', 200)
+    if (!passwordMatched) {
+      throw new AppError(
+        'Authentication failed: incorrect credentials.[2]',
+        200
+      )
     }
 
     const { secret, expiresIn } = authConfig.jwt
 
-    const token = sign(
-      {},
-      secret,
-      {
-        subject: user.id,
-        expiresIn
-      })
+    const token = sign({}, secret, {
+      subject: user.id,
+      expiresIn,
+    })
 
     return {
       user,
-      token
+      token,
     }
   }
 }

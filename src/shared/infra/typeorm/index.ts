@@ -1,9 +1,9 @@
-import {createConnection} from 'typeorm'
+import { createConnection } from 'typeorm'
 
-createConnection()// Connect
-  .then(response => {
+createConnection() // Connect
+  .then((response) => {
     console.log('~ database connected')
   })
-  .catch(error => {
-    console.log('~ ' + error)
+  .catch((error) => {
+    console.log(`~ ${error}`)
   })
