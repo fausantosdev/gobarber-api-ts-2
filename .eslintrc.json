@@ -39,7 +39,8 @@
         "format": ["PascalCase"],
         "prefix": ["I"]
       }
-    ]
+    ],
+    "camelcase": "off"
   },
   "settings": {
     "import/resolver": {
