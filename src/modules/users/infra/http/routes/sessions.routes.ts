@@ -1,6 +1,5 @@
 import { Router, Request, Response } from 'express'
-
-import UserReepository from '@modules/users/infra/typeorm/repositories/UsersRepository'
+import { container } from 'tsyringe'
 
 import AuthService from '@modules/users/services/AuthService'
 
@@ -11,9 +10,7 @@ router.get('/', async (request, response) => {
 })
 
 router.post('/', async (request, response) => {
-  const userRepository = new UserReepository()
-
-  const authService = new AuthService(userRepository)
+  const authService = container.resolve(AuthService)
 
   const { email, password } = request.body
 
