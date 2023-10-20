@@ -12,13 +12,12 @@ module.exports = {
     }
   },
   entities: [
-    './src/modules/users/entities/*.ts',
-    './src/modules/users/entities/*.ts'
+    './src/modules/**/infra/typeorm/entities/*.ts'
   ],
   migrations: [
-    './src/shared/database/migrations/*.ts'
+    './src/shared/infra/typeorm/migrations/*.ts'
   ],
   cli: {
-    migrationsDir: './src/shared/database/migrations'
+    migrationsDir: './src/shared/infra/typeorm/migrations/'
   }
 }
