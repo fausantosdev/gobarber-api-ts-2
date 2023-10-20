@@ -1,5 +1,7 @@
 import { Router, Request, Response } from 'express'
 
+import UserReepository from '@modules/users/infra/typeorm/repositories/UsersRepository'
+
 import AuthService from '@modules/users/services/AuthService'
 
 const router = Router()
@@ -9,7 +11,9 @@ router.get('/', async (request, response) => {
 })
 
 router.post('/', async (request, response) => {
-  const authService = new AuthService()
+  const userRepository = new UserReepository()
+
+  const authService = new AuthService(userRepository)
 
   const { email, password } = request.body
 

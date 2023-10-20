@@ -6,7 +6,7 @@ import ensureAuthenticated from '@modules/users/infra/http/middlewares/ensureAut
 
 import uploadConfig from '@config/upload'
 
-import User from '@modules/users/infra/typeorm/entities/User'
+import UserRepository from '@modules/users/infra/typeorm/repositories/UsersRepository'
 
 import CreateUserService from '@modules/users/services/CreateUserService'
 import UpdateUserAvatarService from '@modules/users/services/UpdateUserAvatarService'
@@ -15,22 +15,12 @@ const upload = multer(uploadConfig)
 
 const router = Router()
 
-router.get('/', async (request, response) => {
-  const usersRepository = getRepository(User)
-
-  try {
-    const users = await usersRepository.find({})
-
-    return response.json(users)
-  } catch (err: any) {
-    return response.status(400).json({ error: err.message })
-  }
-})
-
 router.post('/', async (request, response) => {
   const { name, email, password } = request.body
 
-  const createUser = new CreateUserService()
+  const userRepository = new UserRepository()
+
+  const createUser = new CreateUserService(userRepository)
 
   try {
     const user = await createUser.execute({
@@ -56,7 +46,9 @@ router.patch(
   ensureAuthenticated,
   upload.single('avatar'),
   async (request, response) => {
-    const updateUserAvatar = new UpdateUserAvatarService()
+    const userRepository = new UserRepository()
+
+    const updateUserAvatar = new UpdateUserAvatarService(userRepository)
 
     const user = await updateUserAvatar.execute({
       user_id: request.user.id,
