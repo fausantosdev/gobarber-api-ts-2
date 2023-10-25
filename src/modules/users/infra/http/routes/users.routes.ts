@@ -1,5 +1,4 @@
-import { Router, Request, Response } from 'express'
-import { container } from 'tsyringe'
+import { Router } from 'express'
 
 import multer from 'multer'
 
@@ -7,54 +6,23 @@ import ensureAuthenticated from '@modules/users/infra/http/middlewares/ensureAut
 
 import uploadConfig from '@config/upload'
 
-import CreateUserService from '@modules/users/services/CreateUserService'
-import UpdateUserAvatarService from '@modules/users/services/UpdateUserAvatarService'
+import UsersController from '../controllers/UsersController'
+import UserAvatarController from '../controllers/UserAvatarController'
 
 const upload = multer(uploadConfig)
 
 const router = Router()
 
-router.post('/', async (request, response) => {
-  const { name, email, password } = request.body
+const usersController = new UsersController()
+const userAvatarController = new UserAvatarController()
 
-  const createUser = container.resolve(CreateUserService)
-
-  try {
-    const user = await createUser.execute({
-      name,
-      email,
-      password,
-    })
-
-    // delete user.password
-
-    return response.json(user)
-  } catch (err: any) {
-    return response.status(400).json({ error: err.message })
-  }
-})
+router.post('/', usersController.create)
 
 router.put('/', (request, response) => {
   return response.json({ a: 'update' })
 })
 
-router.patch(
-  '/avatar',
-  ensureAuthenticated,
-  upload.single('avatar'),
-  async (request, response) => {
-    const updateUserAvatar = container.resolve(UpdateUserAvatarService)
-
-    const user = await updateUserAvatar.execute({
-      user_id: request.user.id,
-      avatarFileName: request.file?.filename,
-    })
-
-    delete user.password
-
-    return response.json(user)
-  }
-)
+router.patch('/avatar', ensureAuthenticated, upload.single('avatar'), userAvatarController.update)
 
 router.delete('/', (request, response) => {
   return response.json({ a: 'delete' })
