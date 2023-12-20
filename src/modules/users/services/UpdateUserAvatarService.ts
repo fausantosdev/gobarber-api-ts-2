@@ -7,7 +7,7 @@ import AppError from '@shared/errors/AppError'
 
 import User from '../infra/typeorm/entities/User'
 import IUsersRepository from '../repositories/IUsersRepository'
-import IStorageProvider from '@shared/container/providers/StorageProvider/models/IStorageProvider'
+import { IStorageProvider } from '@shared/container/providers/StorageProvider/models/IStorageProvider'
 
 interface IRequest {
   user_id: string
@@ -35,7 +35,10 @@ class UpdateUserAvatarService {
       await this.storageProvider.deleteFile(user.avatar)
     }
 
-    const filename = await this.storageProvider.saveFile(avatarFileName)
+    const filename = await this.storageProvider.saveFile({
+      file: avatarFileName,
+      folder: user.id
+    })
 
     user.avatar = filename
 
