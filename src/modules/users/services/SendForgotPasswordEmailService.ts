@@ -18,7 +18,7 @@ class SendForgotPasswordEmailService {
   ) {}
 
   public async execute({ email }: IRequest): Promise<void> {
-    this.mailProvider.sendMail(email, 'Pedido de recuperação se senha ecebido.')
+    this.mailProvider.sendMail(email, 'Pedido de recuperação de senha recebido.')
   }
 }
 
