@@ -5,8 +5,9 @@ type Message = {
   body: string
 }
 
-export default class FakeEmailProvider implements IMailProvider{
+export default class FakeEmailProvider implements IMailProvider {
   private messages: Message[] = []
+
   public async sendMail(to: string, body: string): Promise<void> {
     this.messages.push({
       to,

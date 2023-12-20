@@ -16,12 +16,6 @@ describe('SendForgotPasswordEmail', () => {
         fakeMailProvider
     )
 
-    await fakeUsersRepository.create({
-      name: 'John Doe',
-      email: 'johndoe@example.com',
-      password: '123456'
-    })
-
     await sendForgotPasswordEmailService.execute({
       email: 'johndoe@example.com',
     })
