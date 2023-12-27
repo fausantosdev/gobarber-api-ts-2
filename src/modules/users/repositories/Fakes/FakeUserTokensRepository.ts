@@ -12,7 +12,9 @@ class FakeUserTokensRepository implements IUserTokensRepository {
     Object.assign(userToken, {
       id: v4(),
       token: v4(),
-      user_id
+      user_id,
+      created_at: new Date(),
+      updated_at: new Date()
     })
 
     this.usersTokens.push(userToken)
