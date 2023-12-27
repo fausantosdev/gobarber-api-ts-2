@@ -6,6 +6,8 @@ import IUserTokensRepository from '../repositories/IUserTokensRepository'
 
 import AppError from '@shared/errors/AppError'
 
+import IHashProvider from '../providers/HashProvider/models/IHashProvider'
+
 interface IRequest {
   token: string
   password: string
@@ -18,7 +20,10 @@ class ResetPasswordService {
     private usersRepository: IUsersRepository,
 
     @inject('UserTokensRepository')
-    private userTokensRepository: IUserTokensRepository
+    private userTokensRepository: IUserTokensRepository,
+
+    @inject('HashProvider')
+    private hashProvider: IHashProvider
   ) {}
 
   public async execute({ token, password }: IRequest): Promise<void> {
@@ -30,7 +35,7 @@ class ResetPasswordService {
 
       if (!user) throw new AppError('User does not exists', 401)
 
-      user.password = password
+      user.password = await this.hashProvider.generateHash(password)
 
       await this.usersRepository.save(user)
   }
