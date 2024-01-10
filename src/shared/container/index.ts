@@ -3,6 +3,7 @@ import { container } from 'tsyringe'
 import '@modules/users/providers'
 
 import './providers/StorageProvider'
+import './providers/MailTemplateProvider'
 import './providers/MailProvider'
 
 import IAppointmentRepository from '@modules/appointments/repositories/IAppointmentsRepository'
