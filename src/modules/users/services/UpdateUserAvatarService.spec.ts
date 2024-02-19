@@ -2,7 +2,7 @@ import 'reflect-metadata'
 
 import UpdateUserAvatarService from './UpdateUserAvatarService'
 
-import FakeUsersRepository from '../repositories/Fakes/FakeUsersRepository'
+import FakeUsersRepository from '../repositories/fakes/FakeUsersRepository'
 import FakeStoreProvider from '@shared/container/providers/StorageProvider/fakes/FakeStorageProvider'
 
 import AppError from '@shared/errors/AppError'
